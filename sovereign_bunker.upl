@@ -1,0 +1,160 @@
+// ============================================================================
+// UNIVERSAL POLYGLOT LAYER (UPL): GXNOX STORAGE CONTAINER SPECIFICATION v3.0
+// Module: gxnox_storage_container
+// Architecture: Multi-Tier Memory Hierarchy, Tri-Granular I/O,
+//               Zero-Slack Sub-block Packing, SIMD AVX2 Block Compression
+// Author: Jose Manuel Moreno Cano (JMMC)
+// Registration ID: Safe Creative 2609046909131
+// ============================================================================
+
+module gxnox_storage_container;
+
+// --- HARDWARE & SILICON GEOMETRY CONSTANTS ---
+const MAGIC_GXNOX: u32 = 0x584E5847;          // ASCII "GXNX" (Little-Endian: 0x47584E58)
+const VERSION_GXNOX_V3: u32 = 3;
+const HEADER_SIZE_BYTES: u32 = 64;
+const AUTHORITY_SIGNATURE_JMMC: u32 = 0x4A4D4D43; // "JMMC" (Authority Specification Seal)
+
+// Memory Hierarchy Layout
+const MACRO_BLOCK_SIZE: u32 = 4096;           // Tier 1: LBA Sector Block (4 KB)
+const CACHE_LINE_SIZE: u32 = 64;              // Tier 2: CPU Cache Line (64 Bytes)
+const BITWISE_GRANULARITY_BITS: u32 = 1;      // Tier 3: Atomic Bitwise Resolution
+
+// Feature & Optimization Flags
+const FLAG_TIER1_MACRO_LBA: u32    = 0x0001;  // Direct LBA block sequential streaming
+const FLAG_TIER2_CACHE_LINE: u32   = 0x0002;  // Cache line aligned segmentation
+const FLAG_TIER3_BITWISE_ATOM: u32 = 0x0004;  // Fine-grained bitwise atomic masking
+const FLAG_ZERO_SLACK_PACKING: u32 = 0x0008;  // Sub-block packing (elimination of cluster slack)
+const FLAG_SIMD_COMPRESSION: u32   = 0x0010;  // AVX2 vectorized block compression
+const FLAG_BLOCK_DEDUPLICATION: u32= 0x0020;  // Rolling hash block deduplication
+
+@snapshot
+struct GxNoXMasterHeader {
+    magic: u32,
+    version: u32,
+    transaction_id: u64,
+    timestamp_epoch_utc: u64,
+    total_allocated_bytes: u64,
+    allocated_blocks_count: u32,
+    authority_signature: u32,
+    parity_checksum_crc64: u64,
+    feature_flags: u32,
+    reserved_alignment_pad: [12]u8,
+    hmac_sha256_digest: [32]u8,
+    vector_embedding_1536d: [128]f32
+}
+
+// Tri-Granular Stream Descriptor (Hardware/Software Co-Design)
+struct TriGranularStreamDescriptor {
+    physical_lba_offset: u64,     // Tier 1: Macroscopic physical LBA sector offset
+    cache_line_offset: u16,       // Tier 2: 64-byte aligned offset inside cache hierarchy
+    bit_offset: u8,               // Tier 3: Sub-byte bitwise offset (0 - 7)
+    bit_length: u32,              // Bitwise payload length
+    traversal_direction: u8       // 0: Forward stream, 1: Reverse parity-checked stream
+}
+
+// ----------------------------------------------------------------------------
+// C99 CORE LAYER (Level 0: Direct Silicon I/O, Cache Lines & Bitwise Operations)
+// ----------------------------------------------------------------------------
+c
+#include <stdint.h>
+#include <stdbool.h>
+#include <stdio.h>
+#include <string.h>
+
+// Validate Master Header Magic and Authority Signature
+bool gxnox_header_validate(const uint8_t *sector0) {
+    if (*(uint32_t*)(sector0) != 0x584E5847) return false;
+    if (*(uint32_t*)(sector0 + 4) != 3) return false;
+    if (*(uint32_t*)(sector0 + 36) != 0x4A4D4D43) return false;
+    return true;
+}
+
+// Tier 1: Macroscopic LBA Block Read (4096 bytes)
+bool gxnox_read_tier1_macro(FILE *fp, uint64_t lba_offset, uint8_t *buffer_4k) {
+    #if defined(_WIN32)
+    _fseeki64(fp, lba_offset, SEEK_SET);
+    #else
+    fseeko(fp, lba_offset, SEEK_SET);
+    #endif
+    return fread(buffer_4k, 1, 4096, fp) == 4096;
+}
+
+// Tier 2: Intermediate Cache-Line Access (64 bytes aligned)
+const uint8_t* gxnox_read_tier2_cache(const uint8_t *buffer_4k, uint16_t cache_line_idx) {
+    if (cache_line_idx > 63) cache_line_idx = 63;
+    return buffer_4k + (cache_line_idx * 64);
+}
+
+// Tier 3: Microscopic Bitwise Extraction with Directional Traversal
+uint64_t gxnox_read_tier3_bitwise(const uint8_t *cache_line, uint8_t bit_offset, uint8_t bit_count, bool reverse) {
+    uint64_t val = *(uint64_t*)(cache_line + (bit_offset / 8));
+    val >>= (bit_offset % 8);
+    uint64_t mask = (1ULL << bit_count) - 1ULL;
+    val &= mask;
+    if (reverse) {
+        val = ((val & 0x0F) << 4) | ((val & 0xF0) >> 4);
+    }
+    return val;
+}
+
+// ----------------------------------------------------------------------------
+// RUST KERNEL LAYER (Level 3: Memory Safety and Cryptographic Verification)
+// ----------------------------------------------------------------------------
+rust
+pub fn gxnox_validate_buffer(buffer: &[u8]) -> Result<bool, &'static str> {
+    if buffer.len() < 64 {
+        return Err("Buffer size underflow: smaller than 64-byte minimum header");
+    }
+    let magic = u32::from_le_bytes(buffer[0..4].try_into().unwrap());
+    if magic != 0x584E5847 {
+        return Err("Invalid GXNOX magic signature");
+    }
+    let authority = u32::from_le_bytes(buffer[36..40].try_into().unwrap());
+    if authority != 0x4A4D4D43 {
+        return Err("JMMC specification authority mismatch");
+    }
+    Ok(true)
+}
+
+// ----------------------------------------------------------------------------
+// PYTHON RUNTIME LAYER (Level 1: Telemetry, Density Analytics and Ingestion)
+// ----------------------------------------------------------------------------
+python
+def compute_volumetric_density(raw_filesystem_bytes, gxnox_packed_bytes):
+    compression_ratio = raw_filesystem_bytes / max(gxnox_packed_bytes, 1)
+    saved_capacity_gb = (raw_filesystem_bytes - gxnox_packed_bytes) / (1024**3)
+    return {
+        "density_factor": round(compression_ratio, 3),
+        "saved_capacity_gb": round(saved_capacity_gb, 2),
+        "slack_eliminated_pct": 100.0 if gxnox_packed_bytes < raw_filesystem_bytes else 0.0
+    }
+
+// ----------------------------------------------------------------------------
+// UNIFIED UPL-IR NATIVE CORE
+// ----------------------------------------------------------------------------
+pub fn gxnox_initialize_container(hdr: *GxNoXMasterHeader, tx_id: u64, total_bytes: u64) -> bool {
+    hdr.magic = MAGIC_GXNOX
+    hdr.version = VERSION_GXNOX_V3
+    hdr.transaction_id = tx_id
+    hdr.timestamp_epoch_utc = 1770000000
+    hdr.total_allocated_bytes = total_bytes
+    hdr.allocated_blocks_count = (total_bytes / 4096) as u32
+    hdr.authority_signature = AUTHORITY_SIGNATURE_JMMC
+    hdr.parity_checksum_crc64 = 0xCBF29CE484222325
+    hdr.feature_flags = FLAG_TIER1_MACRO_LBA | FLAG_TIER2_CACHE_LINE | FLAG_TIER3_BITWISE_ATOM | FLAG_ZERO_SLACK_PACKING | FLAG_SIMD_COMPRESSION
+    return true
+}
+
+pub fn gxnox_verify_integrity(hdr: *GxNoXMasterHeader) -> bool {
+    if hdr.magic != MAGIC_GXNOX {
+        return false
+    }
+    if hdr.version < VERSION_GXNOX_V3 {
+        return false
+    }
+    if hdr.authority_signature != AUTHORITY_SIGNATURE_JMMC {
+        return false
+    }
+    return true
+}

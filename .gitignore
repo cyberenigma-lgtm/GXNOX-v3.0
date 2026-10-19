@@ -1,0 +1,11 @@
+# Binaries & Objects
+*.exe
+*.o
+*.obj
+*.gxnox
+*.gx
+
+# Temporary files
+.vscode/
+.idea/
+*.tmp

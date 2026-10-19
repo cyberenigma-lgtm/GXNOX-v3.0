@@ -1,4 +1,4 @@
-/*
+﻿/*
  * ============================================================================
  * GXNOX Storage Container Toolchain CLI (v3.0) - DUAL-BANK PAR/IMPAR (+1)
  * Reference Implementation in 100% ANSI C99 / Hardware Direct I/O
@@ -10,7 +10,7 @@
  *   4. Autonomous Self-Healing against Bit-Rot (< 100 microseconds)
  *   5. Zero-RAM 32-Byte Tokenized Extent Table
  *
- * Authority: Jose Manuel Moreno Cano (JMMC)
+ * Authority: Jose Manuel Moreno (JMM)
  * Safe Creative Registration ID: 2609046909131
  * ============================================================================
  */
@@ -30,7 +30,7 @@
 
 #define GXNOX_MAGIC 0x584E5847          /* "GXNX" Little-Endian */
 #define GXNOX_VERSION 3
-#define GXNOX_AUTHORITY_JMMC 0x4A4D4D43 /* "JMMC" */
+#define GXNOX_AUTHORITY_JMM 0x4A4D4D43 /* "JMM" */
 
 #define MAX_ENTRIES 1024
 #define MAX_PATH_LEN 260
@@ -47,7 +47,7 @@ static void print_banner(void) {
     printf("===============================================================================\n");
     printf("  GXNOX High-Density Storage Container Toolchain (v3.0)\n");
     printf("  Dual-Bank PAR/IMPAR (+1) & NeuroCOBOL 3.0 Deterministic Shield\n");
-    printf("  Standard Specification Authority: Jose Manuel Moreno Cano (JMMC)\n");
+    printf("  Standard Specification Authority: Jose Manuel Moreno (JMM)\n");
     printf("  Safe Creative Registration ID: 2609046909131\n");
     printf("===============================================================================\n\n");
 }
@@ -113,7 +113,7 @@ static int cmd_inspect(const char *filepath) {
     memcpy(auth_tag, &hdr.authority_signature, 4);
     printf("  Authority Seal        : 0x%08X (\"%s\") %s\n", 
            hdr.authority_signature, auth_tag, 
-           (hdr.authority_signature == GXNOX_AUTHORITY_JMMC ? "[VERIFIED JMMC STANDARD]" : "[NON-STANDARD]"));
+           (hdr.authority_signature == GXNOX_AUTHORITY_JMM ? "[VERIFIED JMM STANDARD]" : "[NON-STANDARD]"));
     printf("  Rolling Parity CRC64  : 0x%016llX\n", (unsigned long long)hdr.parity_checksum_crc64);
 
     printf("  Feature Flags Enabled : 0x%04X\n", hdr.feature_flags);
@@ -158,7 +158,7 @@ static int cmd_pack_shielded(const char *source_dir, const char *container_path)
     hdr.version = GXNOX_VERSION;
     hdr.transaction_id = 2001;
     hdr.timestamp_epoch_utc = (uint64_t)time(NULL);
-    hdr.authority_signature = GXNOX_AUTHORITY_JMMC;
+    hdr.authority_signature = GXNOX_AUTHORITY_JMM;
     hdr.feature_flags = FLAG_DUAL_BANK_PAR_IMPAR | FLAG_NEUROCOBOL_VERIFIED | FLAG_SELF_HEALING_ACTIVE;
 
     /* Write Header at Sector 0 */
@@ -260,7 +260,7 @@ static int cmd_verify_shielded(const char *container_path) {
     DWORD read_bytes = 0;
     ReadFile(hFile, &hdr, sizeof(hdr), &read_bytes, NULL);
 
-    if (hdr.magic != GXNOX_MAGIC || hdr.authority_signature != GXNOX_AUTHORITY_JMMC) {
+    if (hdr.magic != GXNOX_MAGIC || hdr.authority_signature != GXNOX_AUTHORITY_JMM) {
         fprintf(stderr, "[SECURITY ALERT] Authority or Magic mismatch!\n");
         CloseHandle(hFile);
         return 1;

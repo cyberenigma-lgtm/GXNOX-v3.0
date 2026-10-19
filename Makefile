@@ -1,13 +1,18 @@
-CC ?= gcc
-CFLAGS ?= -O3 -std=c99 -Wall -Wextra -pedantic
-TARGET = gxnox_tool
+CC = gcc
+CFLAGS = -O3 -Wall -Wextra -std=c99 -Isrc
+LDFLAGS = -lpsapi
+
+SRC = src/gxnox_core.c src/dual_parity.c src/neurocobol_rules.c src/main.c
+TARGET = bin/gxnox_tool
 
 all: $(TARGET)
 
-$(TARGET): gxnox_tool.c
-	$(CC) $(CFLAGS) $< -o $@
+$(TARGET): $(SRC)
+	@mkdir -p bin
+	$(CC) $(CFLAGS) $(SRC) -o $(TARGET) $(LDFLAGS)
 
 clean:
-	rm -f $(TARGET) $(TARGET).exe *.o
+	rm -rf bin/*.exe bin/gxnox_tool *.o
 
-.PHONY: all clean
+test: all
+	./$(TARGET) inspect D:/BOVEDA_DOCUMENTACION_GXNOX.gxnox

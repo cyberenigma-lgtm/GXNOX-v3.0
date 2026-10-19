@@ -1,11 +1,11 @@
-/*
+﻿/*
  * ============================================================================
  * GXNOX DUAL-BANK PAR/IMPAR (+1) & NEUROCOBOL 3.0 DETERMINISTIC SHIELD
  * Reference Header in 100% ANSI C99 / Hardware Register Alignment
  *
  * Architecture: Even-Bank Direct Data (2k) + Odd-Bank Backward Mirror (2k+1)
  *               Active Bit-Rot Self-Healing & Anti-Ransomware Invariant Shield
- * Author: Jose Manuel Moreno Cano (JMMC)
+ * Author: Jose Manuel Moreno (JMM)
  * Safe Creative Registration ID: 2609046909131
  * ============================================================================
  */
@@ -51,7 +51,7 @@ typedef struct {
     uint64_t timestamp_epoch_utc;       /* 0x10: Epoch timestamp */
     uint64_t total_allocated_bytes;     /* 0x18: Total capacity */
     uint32_t allocated_blocks_count;    /* 0x20: Number of 4KB blocks */
-    uint32_t authority_signature;       /* 0x24: 0x4A4D4D43 ("JMMC") */
+    uint32_t authority_signature;       /* 0x24: 0x4A4D4D43 ("JMM") */
     uint64_t parity_checksum_crc64;     /* 0x28: Rolling CRC64 checksum */
     uint32_t feature_flags;             /* 0x30: Feature bitmask */
     uint8_t  reserved_alignment_pad[12];/* 0x34: 64-byte boundary pad */

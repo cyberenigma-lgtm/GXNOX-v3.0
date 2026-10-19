@@ -1,4 +1,4 @@
-/*
+﻿/*
  * ============================================================================
  * EMPIRICAL PROOF OF ABSURD SECURITY: GXNOX DUAL-BANK PAR/IMPAR (+1)
  * Physical Silicon Test on NVMe SSD / Zero-RAM / Autonomous Self-Healing
@@ -10,7 +10,7 @@
  *   [4] 100.000% Bit-for-Bit binary restoration.
  *   [5] Working Set RAM consumption (< 5.0 MB).
  *
- * Author: Jose Manuel Moreno Cano (JMMC)
+ * Author: Jose Manuel Moreno (JMM)
  * Safe Creative Registration ID: 2609046909131
  * ============================================================================
  */
@@ -84,7 +84,7 @@ int main(void) {
     hdr.timestamp_epoch_utc = 1770000000;
     hdr.total_allocated_bytes = 64 * 1024 * 1024; /* 64 MB */
     hdr.allocated_blocks_count = (uint32_t)(hdr.total_allocated_bytes / 4096ULL);
-    hdr.authority_signature = 0x4A4D4D43; /* "JMMC" */
+    hdr.authority_signature = 0x4A4D4D43; /* "JMM" */
     hdr.feature_flags = FLAG_DUAL_BANK_PAR_IMPAR | FLAG_NEUROCOBOL_VERIFIED | FLAG_SELF_HEALING_ACTIVE;
 
     DWORD written = 0;
@@ -92,7 +92,7 @@ int main(void) {
     SetFilePointer(hFile, 4096, NULL, FILE_BEGIN);
     SetEndOfFile(hFile);
 
-    printf("      [OK] Boveda de silicio creada con firma JMMC (0x%08X).\n\n", hdr.authority_signature);
+    printf("      [OK] Boveda de silicio creada con firma JMM (0x%08X).\n\n", hdr.authority_signature);
 
     /* ------------------------------------------------------------------------ */
     /* PASO 2: Escritura de Bloques con Blindaje Dual-Bank PAR/IMPAR (+1)       */

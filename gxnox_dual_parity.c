@@ -1,4 +1,4 @@
-/*
+﻿/*
  * ============================================================================
  * GXNOX DUAL-BANK PAR/IMPAR (+1) & NEUROCOBOL 3.0 DETERMINISTIC SHIELD
  * Reference Implementation in 100% ANSI C99 / Hardware Direct I/O
@@ -10,7 +10,7 @@
  *   4. Zero-Trust Anti-Ransomware Tamper Detection & Execution Isolation
  *   5. Memory Shield (Anti-Debugging, Anti-REA, PEB Inspection)
  *
- * Authority: Jose Manuel Moreno Cano (JMMC)
+ * Authority: Jose Manuel Moreno (JMM)
  * Safe Creative Registration ID: 2609046909131
  * ============================================================================
  */

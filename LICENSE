@@ -1,23 +1,67 @@
-MIT License / Standard Specification Agreement
+﻿PROPRIETARY COMMERCIAL SPECIFICATION & SOURCE CODE LICENSE
+ESTÁNDAR DE CONTENEDOR DE ALMACENAMIENTO EN BLOQUE GXNOX v3.0
+TODOS LOS DERECHOS RESERVADOS / ALL RIGHTS RESERVED
 
-Copyright (c) 2026 Jose Manuel Moreno Cano (JMMC)
-Safe Creative Registration ID: 2609046909131
+Copyright (c) 2026 Jose Manuel Moreno (JMM).
+Autor, Arquitecto de Sistemas e Inventor Exclusivo: Jose Manuel Moreno.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+===============================================================================
+TRÍADA DE PROPIEDAD INTELECTUAL Y PATENTES DE SOFTWARE ENCADENADAS
+(REGISTRO OFICIAL INTERNACIONAL SAFE CREATIVE):
+===============================================================================
+1. MÁSTER CONTENEDOR GXNOX v3.0:
+   - Registro Oficial Safe Creative ID: 2610197364465
+   - Fecha de Depósito: 19 de Octubre de 2026
+   - Título: "Estándar de Contenedor de Almacenamiento GXNOX v3.0: Arquitectura de 
+             Bloques de Alta Densidad con Paridad Dual-Bank End-to-End y Árbitro NeuroCOBOL"
 
-The above copyright notice, the Safe Creative intellectual property registration,
-and this permission notice shall be included in all copies or substantial portions
-of the Software.
+2. ARQUITECTURA PAR/IMPAR (+1):
+   - Registro Oficial Safe Creative ID: 2609046909131
+   - Fecha de Depósito: 04 de Septiembre de 2026
+   - Título: "Arquitectura Cognitiva Soberana IAGROK V5 — Modelo PAR/IMPAR +1 y Neurobus 7 Maestro"
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+3. RUNTIME Y COMPILADOR NEUROCOBOL V3.0:
+   - Registro Oficial Safe Creative ID: 2609217054592
+   - Fecha de Depósito: 21 de Septiembre de 2026
+   - Título: "NeuroCOBOL V3.0: Lenguaje de Orquestación Cognitiva, Compilador y Runtime Soberano"
+
+SELLO BINARIO DE AUTORIDAD EN SILICIO: 0x434D4D4A ("JMM")
+
+===============================================================================
+TÉRMINOS Y CONDICIONES DE PROPIEDAD Y EXPLOTACIÓN COMERCIAL
+===============================================================================
+
+1. RESERVA ABSOLUTA DE DERECHOS PATRIMONIALES Y MORALES:
+   El código fuente, las especificaciones de formato binario, los algoritmos de 
+   entrelazado de doble banco PAR/IMPAR (+1), las invariantes deterministas de 
+   coma fija de NeuroCOBOL, y la arquitectura de almacenamiento GXNOX v3.0 son 
+   propiedad intelectual exclusiva e inalienable de Jose Manuel Moreno.
+
+2. PROHIBICIÓN ESTRICTA DE EXPLOTACIÓN COMERCIAL:
+   Queda terminantemente prohibida cualquier forma de explotación comercial, directa 
+   o indirecta, incluyendo pero no limitándose a:
+   a) Uso en entornos corporativos o de producción industrial.
+   b) Integración en sistemas operativos comerciales, hypervisors, o infraestructuras cloud.
+   c) Distribución como Software as a Service (SaaS), Storage as a Service (STaaS) o APIs de pago.
+   d) Venta, reventa, sublicenciamiento o comodato de binarios o código derivado.
+   e) Empaquetamiento en dispositivos de hardware o almacenamiento de consumo.
+   CUALQUIER EXPLOTACIÓN COMERCIAL REQUIERE PREVIAMENTE UN CONTRATO FORMAL DE 
+   LICENCIA COMERCIAL Y EL PAGO DE ROYALTIES AUTORIZADOS POR EL TITULAR (JMM).
+
+3. PROHIBICIÓN DE INGENIERÍA INVERSA Y DERIVACIÓN DE FORMATO:
+   Queda prohibida la descompilación, desmontaje, ingeniería inversa o adaptación 
+   del formato de archivo .gxnox o de su protocolo de auto-sanación en silicio en 
+   lenguajes o sistemas de terceros sin consentimiento expreso y por escrito del autor.
+
+4. ACCESO LIMITADO PARA AUDITORÍA Y EVALUACIÓN CIENTÍFICA (SOURCE-AVAILABLE):
+   Se autoriza únicamente la descarga, lectura, compilación y ejecución local en 
+   entornos estrictamente académicos, de investigación científica o de auditoría 
+   independiente para la verificación empírica de las métricas de rendimiento y 
+   reproducibilidad telemétrica. Este permiso no confiere ningún derecho patrimonial, 
+   ni patente implícita, ni licencia comercial de uso continuado.
+
+5. CONTACTO PARA LICENCIAS COMERCIALES:
+   Para consultas de licenciamiento empresarial, integración OEM, despliegue 
+   industrial o adquisición de derechos comerciales de la tecnología GXNOX v3.0, 
+   contactar directamente con el autor e inventor exclusivo:
+   Jose Manuel Moreno (JMM).

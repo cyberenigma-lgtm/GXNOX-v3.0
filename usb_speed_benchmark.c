@@ -1,4 +1,4 @@
-/*
+﻿/*
  * ============================================================================
  * GXNOX v3.0: BENCHMARK DE VELOCIDAD DE LECTURA/ESCRITURA Y AUDITORÍA DE SILICIO
  * Target: Unidad USB Inestable Z:\ (VendorCo 117.19 GiB)
@@ -9,7 +9,7 @@
  *   3. Latencia de Acceso Aleatorio LBA (microsegundos / IOPS)
  *   4. Latencia de Auto-Sanación Activa ante fallo flash (microsegundos)
  *
- * Autor: Jose Manuel Moreno Cano (JMMC)
+ * Autor: Jose Manuel Moreno (JMM)
  * Safe Creative ID: 2609046909131
  * ============================================================================
  */

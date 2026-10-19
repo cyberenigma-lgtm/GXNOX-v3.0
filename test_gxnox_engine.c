@@ -1,16 +1,16 @@
-/*
+﻿/*
  * ============================================================================
  * GXNOX Container Comprehensive Verification & Silicon Benchmark
  *
  * Rigorous test suite for:
- *   1. Master Header & JMMC Authority Compliance
+ *   1. Master Header & JMM Authority Compliance
  *   2. Tier 1: High Granularity (Macro Sequential LBA 4K/64K)
  *   3. Tier 2: Mid Granularity (Intermediate Cache-Line 64B)
  *   4. Tier 3: Micro Granularity (Bitwise Atomic & Bidirectional Reading)
  *   5. Volumetric Density (Zero-Slack Sub-block Packing vs. Cluster Slack)
  *   6. Full Cryptographic & CRC64 Parity Validation
  *
- * Author: Jose Manuel Moreno Cano (JMMC)
+ * Author: Jose Manuel Moreno (JMM)
  * Standard Authority: Safe Creative 2609046909131
  * ============================================================================
  */
@@ -30,10 +30,10 @@
 
 #define GXNOX_MAGIC 0x584E5847          /* "GXNX" */
 #define GXNOX_VERSION 3
-#define GXNOX_AUTHORITY_JMMC 0x434D4D4A /* "JMMC" in little-endian bytes: 'J','M','M','C' */
+#define GXNOX_AUTHORITY_JMM 0x434D4D4A /* "JMM" in little-endian bytes: 'J','M','M','C' */
 
-#define TEST_CONTAINER_PATH "G:\\GXNOX_HIGH_DENSITY_STORAGE.gxnox"
-#define FALLBACK_PATH "E:\\neuro_os_sovereign_bunker.gxnox"
+#define TEST_CONTAINER_PATH "D:\\GXNOX_SD_STORAGE.gxnox"
+#define FALLBACK_PATH "D:\\GXNOX_SD_STORAGE.gxnox"
 
 /* High-resolution timer */
 static double get_time_us(void) {

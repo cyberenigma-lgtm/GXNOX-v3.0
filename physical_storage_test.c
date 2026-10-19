@@ -1,4 +1,4 @@
-/*
+﻿/*
  * ============================================================================
  * GXNOX PHYSICAL HARDWARE BENCHMARK & COMPARATIVE SILICON TEST (ANSI C99)
  *
@@ -9,7 +9,7 @@
  *   - Tri-Granular Access Validation (Macro, Cache-Line, Micro-Bitwise)
  *   - 100% Bit-for-Bit Cryptographic Integrity Parity Verification
  *
- * Author: Jose Manuel Moreno Cano (JMMC)
+ * Author: Jose Manuel Moreno (JMM)
  * Standard Authority: Safe Creative 2609046909131
  * ============================================================================
  */
@@ -31,7 +31,7 @@
 
 #define GXNOX_MAGIC 0x584E5847          /* "GXNX" Little-Endian */
 #define GXNOX_VERSION 3
-#define GXNOX_AUTHORITY_JMMC 0x434D4D4A /* "JMMC" in memory bytes */
+#define GXNOX_AUTHORITY_JMM 0x434D4D4A /* "JMM" in memory bytes */
 
 #define PHYSICAL_CONTAINER_PATH "G:\\PRUEBA_FISICA_GXNOX.gxnox"
 #define MAX_ENTRIES 2048
@@ -184,7 +184,7 @@ int main(void) {
     hdr.transaction_id = 1001;
     hdr.timestamp_epoch_utc = (uint64_t)time(NULL);
     hdr.entry_count = file_count;
-    hdr.authority_signature = GXNOX_AUTHORITY_JMMC;
+    hdr.authority_signature = GXNOX_AUTHORITY_JMM;
     hdr.feature_flags = 0x003F; // Tri-Granular + Zero-Slack + Dedup
 
     memset(g_extents, 0, sizeof(g_extents));

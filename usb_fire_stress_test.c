@@ -1,4 +1,4 @@
-/*
+﻿/*
  * ============================================================================
  * PRUEBA DE FUEGO EN SILICIO REAL: ESTRÉS Y AUDITORÍA DE USB INESTABLE (120GB)
  * Engine: GXNOX v3.0 Dual-Bank PAR/IMPAR (+1) & NeuroCOBOL Invariants
@@ -9,7 +9,7 @@
  *   3. Activar la auto-sanación instantánea en cuanto ocurra una corrupción.
  *   4. Monitorear velocidad de escritura y temperatura de I/O en tiempo real.
  *
- * Autor: Jose Manuel Moreno Cano (JMMC)
+ * Autor: Jose Manuel Moreno (JMM)
  * Safe Creative ID: 2609046909131
  * ============================================================================
  */
@@ -44,7 +44,7 @@ int main(void) {
     printf("  GXNOX v3.0: PRUEBA DE FUEGO CONTINUA SOBRE USB INESTABLE (Z:)\n");
     printf("  Dual-Bank PAR/IMPAR (+1) - Deteccion de Fallos Flash y Auto-Sanacion\n");
     printf("  Capacidad Fisica Objetivo: Hasta 110 GB en tramos de %llu MB\n", (unsigned long long)CHUNK_SIZE_MB);
-    printf("  Autor: Jose Manuel Moreno Cano (JMMC) | Safe Creative ID: 2609046909131\n");
+    printf("  Autor: Jose Manuel Moreno (JMM) | Safe Creative ID: 2609046909131\n");
     printf("===============================================================================\n\n");
 
     /* 1. Abrir o Crear el Contenedor en Z:\ */
@@ -71,7 +71,7 @@ int main(void) {
     hdr.magic = 0x584E5847; /* "GXNX" */
     hdr.version = 3;
     hdr.transaction_id = 9999;
-    hdr.authority_signature = 0x4A4D4D43; /* "JMMC" */
+    hdr.authority_signature = 0x4A4D4D43; /* "JMM" */
     hdr.feature_flags = FLAG_DUAL_BANK_PAR_IMPAR | FLAG_NEUROCOBOL_VERIFIED | FLAG_SELF_HEALING_ACTIVE;
 
     DWORD io_bytes = 0;

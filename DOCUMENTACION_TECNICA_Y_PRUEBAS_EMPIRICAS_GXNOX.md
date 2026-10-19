@@ -1,14 +1,15 @@
-# ESPECIFICACIÓN TÉCNICA MAESTRA Y CERTIFICACIÓN EMPÍRICA: ESTÁNDAR GXNOX v3.0
+﻿# ESPECIFICACIÓN TÉCNICA MAESTRA Y CERTIFICACIÓN EMPÍRICA: ESTÁNDAR GXNOX v3.0
 ## Contenedor de Almacenamiento en Bloque de Alta Densidad, Co-Diseño de Jerarquía de Memoria de Tres Vías y Eliminación de Sobrecarga VFS
 
 ---
 
 ### METADATOS DEL DOCUMENTO
 * **Título Formal**: GXNOX Storage Container Standard (v3.0) - High-Density Block Storage & Multi-Tier Memory Hierarchy Architecture.
-* **Autor / Arquitecto de Sistemas**: José Manuel Moreno Cano (JMMC).
-* **Certificación y Propiedad Intelectual**: Registrado y protegido internacionalmente bajo Safe Creative (ID: `2609046909131`).
+* **Autor / Arquitecto de Sistemas**: José Manuel Moreno (JMM).
+* **Certificación y Propiedad Intelectual**: Registrado y protegido internacionalmente bajo Safe Creative:
+  - Registro Prioritario 1: ID `2609046909131` ("Arquitectura Cognitiva Soberana IAGROK V5 — Modelo PAR/IMPAR +1 y Neurobus 7 Maestro", 04/09/2026)
+  - Registro Prioritario 2: ID `2609217054592` ("NeuroCOBOL V3.0: Lenguaje de Orquestación Cognitiva, Compilador y Runtime Soberano", 21/09/2026)
 * **Estándar de Implementación**: 100% ANSI C99 Estricto / POSIX Direct I/O / UPL-IR Specification.
-* **Fecha de Emisión y Validación Empírica**: 19 de Octubre de 2026.
 * **Nivel de Clasificación**: Documento Técnico Abierto de Referencia (Peer-Review Whitepaper).
 
 ---
@@ -196,7 +197,7 @@ El diseño del Sector 0 (primeros 4096 bytes del contenedor) garantiza alineaci�
 | `0x10 - 0x17` | 8 bytes | `uint64_t` | `timestamp_epoch_utc` | Marca temporal Unix UTC de creación. |
 | `0x18 - 0x1F` | 8 bytes | `uint64_t` | `total_allocated_bytes` | Capacidad total pre-asignada en bytes. |
 | `0x20 - 0x23` | 4 bytes | `uint32_t` | `entry_count` | Cantidad total de archivos o extents registrados. |
-| `0x24 - 0x27` | 4 bytes | `uint32_t` | `authority_signature` | `0x434D4D4A` (Firma de especificación `"JMMC"`). |
+| `0x24 - 0x27` | 4 bytes | `uint32_t` | `authority_signature` | `0x434D4D4A` (Firma de especificación `"JMM"`). |
 | `0x28 - 0x2F` | 8 bytes | `uint64_t` | `parity_checksum_crc64` | Checksum rolling CRC64-ECMA de la cabecera. |
 | `0x30 - 0x33` | 4 bytes | `uint32_t` | `feature_flags` | Bitmask de características activas (`0x003F`). |
 | `0x34 - 0x3F` | 12 bytes| `uint8_t[12]`| `reserved_pad` | Relleno a cero para alinear a 64 bytes (L1 Cache). |
@@ -215,7 +216,7 @@ El diseño del Sector 0 (primeros 4096 bytes del contenedor) garantiza alineaci�
 
 ## 6. Integración con Universal Polyglot Layer (UPL)
 
-El estándar GXNOX está especificado nativamente en UPL ([sovereign_bunker.upl](file:///c:/IAGROK/Sovereign-Bunker-GXNOX/sovereign_bunker.upl)), permitiendo que compiladores de **C99, Rust, Python, Go, Zig y NeuroCOBOL** generen llamadas nativas a los descriptores de bloque sin dependencias de librerías de terceros.
+El estándar GXNOX está especificado nativamente en UPL ([gxnox_container.upl](file:///c:/IAGROK/Sovereign-Bunker-GXNOX/gxnox_container.upl)), permitiendo que compiladores de **C99, Rust, Python, Go, Zig y NeuroCOBOL** generen llamadas nativas a los descriptores de bloque sin dependencias de librerías de terceros.
 
 ---
 
@@ -234,7 +235,7 @@ El siguiente código es autónomo, compilable y de grado de producción. Cualqui
 
 #define GXNOX_MAGIC 0x584E5847          /* "GXNX" Little-Endian */
 #define GXNOX_VERSION 3
-#define GXNOX_AUTHORITY_JMMC 0x434D4D4A /* "JMMC" en bytes de silicio */
+#define GXNOX_AUTHORITY_JMM 0x434D4D4A /* "JMM" en bytes de silicio */
 
 #pragma pack(push, 1)
 typedef struct {
@@ -345,7 +346,7 @@ uint64_t gxnox_read_tier3_micro(const uint8_t *cache_line_64b, uint8_t bit_offse
 bool gxnox_verify_master_header(const MasterHeader *hdr) {
     if (hdr->magic != GXNOX_MAGIC) return false;
     if (hdr->version != GXNOX_VERSION) return false;
-    if (hdr->authority_signature != GXNOX_AUTHORITY_JMMC) return false;
+    if (hdr->authority_signature != GXNOX_AUTHORITY_JMM) return false;
     return true;
 }
 ```
@@ -381,7 +382,7 @@ pub fn validar_cabecera_gxnox(buffer: &[u8]) -> Result<bool, &'static str> {
     }
     let auth = u32::from_le_bytes(buffer[36..40].try_into().unwrap());
     if auth != 0x434D4D4A {
-        return Err("Sello de Autoridad JMMC no verificado");
+        return Err("Sello de Autoridad JMM no verificado");
     }
     Ok(true)
 }
@@ -406,7 +407,7 @@ def auditar_contenedor_gxnox(ruta_archivo):
             "version": version,
             "capacidad_gb": round(total_bytes / (1024**3), 2),
             "total_archivos": entries,
-            "sello_autoridad": "JMMC (Jos\u00e9 Manuel Moreno Cano)" if auth == 0x434D4D4A else "Desconocido"
+            "sello_autoridad": "JMM (Jos\u00e9 Manuel Moreno)" if auth == 0x434D4D4A else "Desconocido"
         }
 ```
 
@@ -492,7 +493,7 @@ Cualquier sistema de IA, evaluador o auditor puede verificar este resultado de i
 | **Acceso Jerárquico de 3 Vías** | No | No | No | No | **Sí (Alta: 64K, Media: 64B, Micro: Bitwise)** |
 | **Embeddings Semánticos de IA** | No (Requiere DB) | No (Requiere DB) | No | No | **Sí (Matriz 1536d en Cabecera Sector 0)** |
 | **Fragmentación Física Externa** | Severa con el tiempo | Media con el tiempo | Severa en discos dinámicos | Media (Compaction I/O) | **0.0% (Pre-reserva contigua de silicio)** |
-| **Paridad y Sello de Autoridad** | No / Journaling | No / Journaling | Checksum básico | CRC32 por bloque | **HMAC-SHA256 + Paridad CRC64 + Sello JMMC** |
+| **Paridad y Sello de Autoridad** | No / Journaling | No / Journaling | Checksum básico | CRC32 por bloque | **HMAC-SHA256 + Paridad CRC64 + Sello JMM** |
 | **Multi-Lenguaje Nativo** | Kernel C | Kernel C | Drivers virtualización | Bindings C++ | **UPL: C99, Rust, Python, Go, Zig** |
 
 ---
@@ -1001,7 +1002,7 @@ La suite de validación física `test_gxnox_absurd_security.exe` y la herramient
 
 [1/5] Inicializando boveda de silicio en disco fisico:
       Ruta: C:\IAGROK\datos_y_memoria\ABSURD_SECURITY_VAULT.gxnox
-      [OK] Boveda de silicio creada con firma JMMC (0x4A4D4D43).
+      [OK] Boveda de silicio creada con firma JMM (0x4A4D4D43).
 
 [2/5] Escribiendo 16 sectores de datos bajo regla NeuroCOBOL 3.0:
       Sector Par (2k) -> Datos Reales | Sector Impar (2k+1) -> Espejo Inverso (+1)
@@ -1062,7 +1063,7 @@ El formato no requiere antivirus, ni sistemas externos de comprobación de disco
 
 ## 15. Acreditación Legal y Propiedad Intelectual
 
-* **Autor e Inventor**: José Manuel Moreno Cano (JMMC).
+* **Autor e Inventor**: José Manuel Moreno (JMM).
 * **Registro de Propiedad Intelectual**: Safe Creative ID `2609046909131` (*Arquitectura Cognitiva Soberana IAGROK V5 — Modelo PAR/IMPAR +1 y Neurobus 7 Maestro*).
 * **Licencia de Uso**: Especificación Abierta Estándar de Alto Rendimiento. La implementación de la estructura de cabecera, tabla de extents y códec dual-bank PAR/IMPAR está sujeta a los términos de la acreditación Safe Creative del autor.
 * **Estado de la Tecnología**: Verificada, certificada y en producción en la plataforma Neuro-OS / IAGROK.

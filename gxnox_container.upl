@@ -1,10 +1,15 @@
-// ============================================================================
+﻿// ============================================================================
 // UNIVERSAL POLYGLOT LAYER (UPL): GXNOX STORAGE CONTAINER SPECIFICATION v3.0
 // Module: gxnox_storage_container
-// Architecture: Multi-Tier Memory Hierarchy, Tri-Granular I/O,
-//               Zero-Slack Sub-block Packing, SIMD AVX2 Block Compression
-// Author: Jose Manuel Moreno Cano (JMMC)
-// Registration ID: Safe Creative 2609046909131
+// ----------------------------------------------------------------------------
+// Autor y Titular de los Derechos: José Manuel Moreno (JMM)
+// 
+// TRÍADA DE PROPIEDAD INTELECTUAL Y PATENTES ENCADENADAS:
+// 1. MÁSTER CONTENEDOR GXNOX v3.0 : Safe Creative ID 2610197364465 (19/10/2026)
+// 2. ARQUITECTURA PAR/IMPAR +1    : Safe Creative ID 2609046909131 (04/09/2026)
+// 3. RUNTIME NEUROCOBOL V3.0      : Safe Creative ID 2609217054592 (21/09/2026)
+// 
+// SELLO BINARIO DE AUTORIDAD: 0x434D4D4A ("JMM") - ALL RIGHTS RESERVED
 // ============================================================================
 
 module gxnox_storage_container;
@@ -13,7 +18,7 @@ module gxnox_storage_container;
 const MAGIC_GXNOX: u32 = 0x584E5847;          // ASCII "GXNX" (Little-Endian: 0x47584E58)
 const VERSION_GXNOX_V3: u32 = 3;
 const HEADER_SIZE_BYTES: u32 = 64;
-const AUTHORITY_SIGNATURE_JMMC: u32 = 0x4A4D4D43; // "JMMC" (Authority Specification Seal)
+const AUTHORITY_SIGNATURE_JMM: u32 = 0x4A4D4D43; // "JMM" (Authority Specification Seal)
 
 // Memory Hierarchy Layout
 const MACRO_BLOCK_SIZE: u32 = 4096;           // Tier 1: LBA Sector Block (4 KB)
@@ -112,7 +117,7 @@ pub fn gxnox_validate_buffer(buffer: &[u8]) -> Result<bool, &'static str> {
     }
     let authority = u32::from_le_bytes(buffer[36..40].try_into().unwrap());
     if authority != 0x4A4D4D43 {
-        return Err("JMMC specification authority mismatch");
+        return Err("JMM specification authority mismatch");
     }
     Ok(true)
 }
@@ -140,7 +145,7 @@ pub fn gxnox_initialize_container(hdr: *GxNoXMasterHeader, tx_id: u64, total_byt
     hdr.timestamp_epoch_utc = 1770000000
     hdr.total_allocated_bytes = total_bytes
     hdr.allocated_blocks_count = (total_bytes / 4096) as u32
-    hdr.authority_signature = AUTHORITY_SIGNATURE_JMMC
+    hdr.authority_signature = AUTHORITY_SIGNATURE_JMM
     hdr.parity_checksum_crc64 = 0xCBF29CE484222325
     hdr.feature_flags = FLAG_TIER1_MACRO_LBA | FLAG_TIER2_CACHE_LINE | FLAG_TIER3_BITWISE_ATOM | FLAG_ZERO_SLACK_PACKING | FLAG_SIMD_COMPRESSION
     return true
@@ -153,7 +158,7 @@ pub fn gxnox_verify_integrity(hdr: *GxNoXMasterHeader) -> bool {
     if hdr.version < VERSION_GXNOX_V3 {
         return false
     }
-    if hdr.authority_signature != AUTHORITY_SIGNATURE_JMMC {
+    if hdr.authority_signature != AUTHORITY_SIGNATURE_JMM {
         return false
     }
     return true

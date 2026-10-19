@@ -1,6 +1,6 @@
-﻿<div align="center">
+<div align="center">
 
-<img src="assets/gxnox_logo.jpg" alt="GXNOX v3.0 Silicon Storage Container" width="280" style="border-radius: 16px; box-shadow: 0 4px 20px rgba(0, 255, 230, 0.3);" />
+<img src="assets/gxnox_logo.jpg" alt="GXNOX v3.0 Silicon Storage Container" width="560" style="max-width: 100%; border-radius: 20px; box-shadow: 0 8px 32px rgba(0, 255, 230, 0.35);" />
 
 # GXNOX High-Density Block Storage Engine (v3.0)
 ### Estándar de Contenedor de Almacenamiento en Bloque de Alta Densidad, Doble Banco PAR/IMPAR (+1) y Auto-Sanación en Silicio

@@ -1,5 +1,10 @@
-﻿# Welcome to the GXNOX v3.0 Official Wiki
+<div align="center">
+
+<img src="https://raw.githubusercontent.com/cyberenigma-lgtm/GXNOX-v3.0/main/assets/gxnox_logo.jpg" alt="GXNOX v3.0 Silicon Storage Container" width="480" style="max-width: 100%; border-radius: 20px; box-shadow: 0 8px 32px rgba(0, 255, 230, 0.35);" />
+
+# Welcome to the GXNOX v3.0 Official Wiki
 ### Estándar de Contenedor de Almacenamiento en Bloque de Alta Densidad, Doble Banco PAR/IMPAR (+1) y Auto-Sanación en Silicio
+</div>
 
 [![Safe Creative Master](https://img.shields.io/badge/Safe%20Creative%20Master-2610197364465-red.svg)](https://www.safecreative.org/work/2610197364465)
 [![Safe Creative PAR/IMPAR](https://img.shields.io/badge/Prior%20Art%20PAR%2FIMPAR-2609046909131-red.svg)](https://www.safecreative.org/work/2609046909131)

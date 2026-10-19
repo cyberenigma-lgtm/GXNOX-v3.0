@@ -7,6 +7,11 @@
 [![Integrity](https://img.shields.io/badge/Integrity-HMAC--SHA256%20%2F%20CRC64-success.svg)](#)
 [![Author](https://img.shields.io/badge/Author-Jos%C3%A9%20Manuel%20Moreno%20Cano%20(JMMC)-gold.svg)](#)
 
+[![Whitepaper](https://img.shields.io/badge/Whitepaper-Empirical%20Proof-success.svg)](DOCUMENTACION_TECNICA_Y_PRUEBAS_EMPIRICAS_GXNOX.md)
+
+> 📘 **Documento Técnico y Pruebas Empíricas en Silicio**: Consulta el informe científico completo con demostración matemática de eliminación de slack space, descomposición del VFS kernel overhead y pruebas físicas reproducibles en:  
+> [**DOCUMENTACION_TECNICA_Y_PRUEBAS_EMPIRICAS_GXNOX.md**](DOCUMENTACION_TECNICA_Y_PRUEBAS_EMPIRICAS_GXNOX.md)
+
 ---
 
 ## 1. Executive Summary

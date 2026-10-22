@@ -9,3 +9,8 @@
 .vscode/
 .idea/
 *.tmp
+
+*.zip
+*.dll
+*.exe
+*.bin
